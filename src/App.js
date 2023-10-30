@@ -8,8 +8,15 @@ import rocket from './assets/rocket.svg'
 import send from './assets/send.svg'
 import userIcon from './assets/user-icon.png'
 import gptImgLogo from './assets/chatgptLogo.svg' 
+import { sendMsgToOpenAi } from './openai';
+import { useState } from 'react';
 
 function App() {
+const [input ,setInput]=useState("");
+  const handleSend=()=>{
+    const res = sendMsgToOpenAi()
+  }
+
   return (
     <div className="App">
       <div className="sideBar">
@@ -55,7 +62,7 @@ function App() {
         </div>
         <div className="chatsFooter">
           <div className="inp">
-            <input type="text" placeholder='send a message  '/>
+            <input type="text" placeholder='send a message  ' value={input} onChange={(e)=>{setInput(e.target.value)}}/>
             <button className="send"><img src={send} alt="" /></button>
           </div>
           <p>ChatGPT My provide inaccurate output</p>
